@@ -21,12 +21,11 @@ class App extends React.Component {
         }
         return (
             <div className="container">
-                <div className="col-md-12">
+                
                     <Header user={user}/>
-                </div>
-                <div className="col-md-12">
+                
                     <Home data={search}/>
-                </div>
+                
             </div>
         )
     }

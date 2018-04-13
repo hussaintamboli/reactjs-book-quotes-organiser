@@ -4,15 +4,13 @@ import PropTypes from "prop-types"
 export class Home extends React.Component {
     render() {
         return (
-            <div>
-                <form className="form-inline">
+            <div className="col-md-6">
+                <form>
                     <div className="form-group">
-                        <textarea className="form-control-lg" rows="2" placeholder="e.g. I would like to have coffee"></textarea>
+                        <textarea className="form-control" rows="2" placeholder="e.g. I would like to have coffee"></textarea>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-10">
-                        <button type="submit" className="btn btn-primary">Go</button>
-                        </div>
+                        <button type="submit" className="btn btn-primary btn-lg btn-block">Go</button>
                     </div>
                 </form>
 
