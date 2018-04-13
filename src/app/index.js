@@ -1,7 +1,7 @@
 console.log("it works!")
 import React from "react"
 import { render } from "react-dom"
-import "bootstrap"
+import 'bootstrap/dist/css/bootstrap.css'
 
 import { Header } from "./components/Header";
 import { Home } from "./components/Home";
