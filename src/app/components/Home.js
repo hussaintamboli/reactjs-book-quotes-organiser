@@ -4,12 +4,12 @@ import PropTypes from "prop-types"
 export class Home extends React.Component {
     render() {
         return (
-            <div className="col-md-6">
+            <div className="col-md-6 offset-3">
                 <form>
                     <div className="form-group">
                         <textarea className="form-control" rows="2" placeholder="e.g. I would like to have coffee"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div className="form-group">
                         <button type="submit" className="btn btn-primary btn-lg btn-block">Go</button>
                     </div>
                 </form>
