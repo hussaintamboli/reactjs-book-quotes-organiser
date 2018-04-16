@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 export class Header extends React.Component {
     render() {
@@ -7,7 +7,7 @@ export class Header extends React.Component {
             <div className="col-md-12">
                 <p>Hi {this.props.user.name}</p>
             </div>
-        )
+        );
     }
 }
 
