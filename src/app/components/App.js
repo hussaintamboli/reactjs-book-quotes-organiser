@@ -13,6 +13,7 @@ export class App extends React.Component {
             name: "Hussain",
             email: "hussaintamboli18@gmail.com"
         };
+        var year = (new Date()).getFullYear();
         return (
             <div className="container">
                 
@@ -22,10 +23,11 @@ export class App extends React.Component {
                         <Switch>
                             <Route exact path="/" component={Books} />
                             <Route path="/quotes" component={Quotes} />
+                            <Redirect to="/" />
                         </Switch>
                     </main>
 
-                    <Footer />
+                    <Footer year={year}/>
                 
             </div>
         );

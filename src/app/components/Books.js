@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export class Books extends React.Component {
     constructor(props) {
@@ -53,7 +54,7 @@ export class Books extends React.Component {
                 <div className="form-group">
                     <label htmlFor="author" className="font-italic font-weight-light">by</label>
                     <input className="form-control form-control-sm col-md-12" 
-                        id="author" placeholder="Author" 
+                        id="author" placeholder="this author" 
                         value={this.state.new.author}
                         onChange={(event) => this.updateAuthor(event)}/> 
                 </div>
@@ -62,7 +63,7 @@ export class Books extends React.Component {
                 </div>
 
                 <ul>
-                    {this.state.books.map((item, i) => <li key={i}>{item.title + " by " + item.author}</li>)}
+    {this.state.books.map((item, i) => <li key={i}><Link to={{ pathname: "/quotes", search: "?title=" + item.title }}>{item.title}</Link> by <Link to={{ pathname: "/quotes", search: "?author=" + item.author }}>{item.author}</Link></li>)}
                 </ul>
             </div>
         );

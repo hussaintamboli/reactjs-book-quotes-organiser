@@ -5,7 +5,7 @@ export class Header extends React.Component {
     render() {
         return (
             <div className="col-md-12">
-                <p>Hi {this.props.user.name}</p>
+                <p>Welcome {this.props.user.name}</p>
             </div>
         );
     }
