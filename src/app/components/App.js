@@ -1,8 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import { Header } from "./Header";
 import { Books } from "./Books";
+import { Quotes } from "./Quotes";
+import { Footer } from "./Footer";
 
 export class App extends React.Component {
     render() {
@@ -15,7 +18,14 @@ export class App extends React.Component {
                 
                     <Header user={user}/>
                 
-                    <Books />
+                    <main>
+                        <Switch>
+                            <Route exact path="/" component={Books} />
+                            <Route path="/quotes" component={Quotes} />
+                        </Switch>
+                    </main>
+
+                    <Footer />
                 
             </div>
         );
