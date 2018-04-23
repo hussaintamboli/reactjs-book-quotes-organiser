@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { BookList } from "./BookList";
 
 export class Books extends React.Component {
     constructor(props) {
@@ -62,9 +63,8 @@ export class Books extends React.Component {
                     <button onClick={this.addBook.bind(this)} className="btn btn-primary btn-lg btn-block">Add</button>
                 </div>
 
-                <ul>
-    {this.state.books.map((item, i) => <li key={i}><Link to={{ pathname: "/quotes", search: "?title=" + item.title }}>{item.title}</Link> by <Link to={{ pathname: "/quotes", search: "?author=" + item.author }}>{item.author}</Link></li>)}
-                </ul>
+                <BookList books={this.state.books}/>
+
             </div>
         );
     }
