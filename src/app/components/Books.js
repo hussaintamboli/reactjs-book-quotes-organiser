@@ -17,10 +17,8 @@ export class Books extends React.Component {
 
     addBook = (book) => {
         console.log("adding ", book);
-        const newBooks = this.state.books;
-        newBooks.push(book);
         this.setState({
-            books: newBooks
+            books: [...this.state.books, book]
         });
     }
 

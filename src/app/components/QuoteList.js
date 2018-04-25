@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export class QuoteList extends React.Component {
     render() {
@@ -13,4 +14,9 @@ export class QuoteList extends React.Component {
             </div>
         );
     }
+}
+
+QuoteList.propTypes = {
+    quotes: PropTypes.array,
+    fromOrBy: PropTypes.string
 }
