@@ -1,24 +1,13 @@
 import React from "react";
 
+import { QuoteList } from "./QuoteList";
+import { NewQuote } from "./NewQuote";
+
 const queryString = require('query-string');
 
 export class Quotes extends React.Component {
-
-    addQuote() {
-        console.log("adding quote..")
-    }
-
-    render() {
-        const parsedQs = queryString.parse(location.search);
-        var title = undefined;
-        var author = undefined;
-        if (parsedQs.title) {
-            title = parsedQs.title;
-        } else if (parsedQs.author) {
-            author = parsedQs.author;
-        } else {
-            console.log("title/author not found in", parsedQs);
-        }
+    constructor() {
+        super();
         this.state = {
             quotes: [
                 "Ideas come and go, stories stay",
@@ -26,22 +15,35 @@ export class Quotes extends React.Component {
                 "Read books are far less valuable than unread ones"
             ]
         }
+    }
+
+    addQuote = (quote) => {
+        console.log("adding ", quote);
+        this.setState({
+            quotes: [...this.state.quotes, quote]
+        });
+    }
+
+    render() {
+        const parsedQs = queryString.parse(location.search);
+        var title = undefined;
+        var author = undefined;
+        var fromOrBy = '';
+        if (parsedQs.title) {
+            title = parsedQs.title;
+            fromOrBy = 'from ' + title;
+        } else if (parsedQs.author) {
+            author = parsedQs.author;
+            fromOrBy = 'by ' + author;
+        } else {
+            console.log("title/author not found in", parsedQs);
+        }
+
         return (
             <div className="col-md-12">
-                <div className="row">
-                    <div className="form-group col-md-12">
-                        <textarea 
-                                className="form-control col-md-12" 
-                                rows="2" placeholder="An awesome quote"/>
-                        </div>
-                    <div className="form-group col-md-12">
-                        <button onClick={this.addQuote.bind(this)} className="btn btn-primary float-right">Add</button>
-                    </div>
-                </div>
-                <p className="lead">Quotes { title !== undefined ? 'from ' + title : 'by ' + author }</p>
-                <ul>
-                    {this.state.quotes.map((item, i) => <li key={i}>{item}</li>)}
-                </ul>
+                <NewQuote fromOrBy={fromOrBy} onAdd={this.addQuote} />
+                
+                <QuoteList fromOrBy={fromOrBy} quotes={this.state.quotes} />
             </div>
         );
     }
