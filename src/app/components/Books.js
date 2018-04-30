@@ -29,14 +29,9 @@ export class Books extends React.Component {
         });
     }
 
-    snakeCase = (string) => {
-        return string.replace(/\s+/g, '-').toLowerCase();
-    }
-
     addBook = (book) => {
         var self = this;
         console.log("adding ", book);
-        let key = self.snakeCase(book.title + " by " + book.author);
         fetch('https://bookquotes-f6c75.firebaseio.com/library.json', {
             method: 'post',
             body: JSON.stringify(book)  // ES6 - put variable in [] to use it's value as key

@@ -5,7 +5,7 @@ export class Footer extends React.Component {
     render() {
         return (
             <div className="col-md-12">
-                <p>&copy; { this.props.year }</p>
+                <p>BookQuotes &copy; { this.props.year }</p>
             </div>
         );
     }
