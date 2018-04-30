@@ -12,11 +12,7 @@ export class Quotes extends React.Component {
             fromOrBy: '',
             title: false,
             author: false,
-            quotes: [
-                "Ideas come and go, stories stay",
-                "Prediction, not narration, is the real test of our understanding of the world",
-                "Read books are far less valuable than unread ones"
-            ]
+            quotes: []
         }
     }
 

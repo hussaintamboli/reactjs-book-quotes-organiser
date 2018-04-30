@@ -18,7 +18,8 @@ export class Books extends React.Component {
 
     fetchBooks = () => {
         var self = this;
-        $.getJSON('https://bookquotes-f6c75.firebaseio.com/library.json')
+        fetch('https://bookquotes-f6c75.firebaseio.com/library.json')
+        .then(function(response) { return response.json(); })
         .then(function ( results ) {
             for (let key of Object.keys(results)) {
                 let obj = results[key];
