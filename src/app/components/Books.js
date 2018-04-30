@@ -22,15 +22,32 @@ export class Books extends React.Component {
         .then(function ( results ) {
             for (let key of Object.keys(results)) {
                 let obj = results[key];
-                self.addBook({title: obj.title, author: obj.author, link: key});
+                self.setState({
+                    books: [...self.state.books, {title: obj.title, author: obj.author, link: key}]
+                });
             }
         });
     }
 
+    snakeCase = (string) => {
+        return string.replace(/\s+/g, '-').toLowerCase();
+    }
+
     addBook = (book) => {
+        var self = this;
         console.log("adding ", book);
-        this.setState({
-            books: [...this.state.books, book]
+        let key = self.snakeCase(book.title + " by " + book.author);
+        fetch('https://bookquotes-f6c75.firebaseio.com/library.json', {
+            method: 'post',
+            body: JSON.stringify(book)  // ES6 - put variable in [] to use it's value as key
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log('Created Gist:', data);
+            book['link'] = data.name;
+            self.setState({
+                books: [...self.state.books, book]
+            });
         });
     }
 
