@@ -10,6 +10,8 @@ export class Quotes extends React.Component {
         super();
         this.state = {
             fromOrBy: '',
+            title: false,
+            author: false,
             quotes: [
                 "Ideas come and go, stories stay",
                 "Prediction, not narration, is the real test of our understanding of the world",
@@ -36,9 +38,9 @@ export class Quotes extends React.Component {
             return response.json();
         })
         .then(json => {
-            self.setState({fromOrBy: 'from ' + json.title + ' by ' + json.author});
+            self.setState({title: key, fromOrBy: 'from ' + json.title + ' by ' + json.author});
             let quotes = json.quotes || [];
-            self.setState({quotes: quotes});
+            self.setState({quotes: Object.values(quotes)});
         })
         .catch((error) => {
             console.log("fetchBookQuotes error ", error);
@@ -51,8 +53,8 @@ export class Quotes extends React.Component {
 
     fetchAuthorQuotes = (author) => {
         let self = this;
-        self.setState({fromOrBy: 'by ' + author});
         let key = this.snakeCase(author);
+        self.setState({author: key, fromOrBy: 'by ' + author});
         fetch('https://bookquotes-f6c75.firebaseio.com/authors/' + key + '/quotes.json')
         .then(response => {
             return response.json();
@@ -66,9 +68,27 @@ export class Quotes extends React.Component {
     }
 
     addQuote = (quote) => {
-        console.log("adding ", quote);
-        this.setState({
-            quotes: [...this.state.quotes, quote]
+        console.log("adding quote ", quote);
+        var self = this;
+        let url = undefined;
+        if (self.state.title) {
+            url = 'https://bookquotes-f6c75.firebaseio.com/library/' + self.state.title + '/quotes.json';
+        } else {
+            url = 'https://bookquotes-f6c75.firebaseio.com/authors/' + self.state.author + '/quotes.json';
+        }
+        fetch(url, {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: '"' + quote + '"'
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log('Pushed Quote:', data);
+            self.setState({
+                quotes: [...self.state.quotes, quote]
+            });
         });
     }
 

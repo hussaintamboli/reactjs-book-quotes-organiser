@@ -34,7 +34,7 @@ export class Books extends React.Component {
         console.log("adding ", book);
         fetch('https://bookquotes-f6c75.firebaseio.com/library.json', {
             method: 'post',
-            body: JSON.stringify(book)  // ES6 - put variable in [] to use it's value as key
+            body: JSON.stringify(book) 
         }).then(function(response) {
             return response.json();
         }).then(function(data) {
