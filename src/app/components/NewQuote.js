@@ -10,7 +10,7 @@ export class NewQuote extends React.Component {
     }
 
     add() {
-        this.props.onAdd(this.state.quote);
+        this.props.onAdd(this.state.quote.trim());
         this.setState({quote: ''});
     }
 
@@ -30,7 +30,7 @@ export class NewQuote extends React.Component {
                             onChange={(event) => this.updateQuote(event)} />
                     </div>
                 <div className="form-group col-md-12">
-                    <button onClick={this.add.bind(this)} disabled={this.state.quote === ''} className="btn btn-primary float-right">Add</button>
+                    <button onClick={this.add.bind(this)} disabled={this.state.quote.trim() === ''} className="btn btn-primary float-right">Add</button>
                 </div>
             </div>
         );

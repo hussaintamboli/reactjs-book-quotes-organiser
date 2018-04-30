@@ -10,7 +10,7 @@ export class NewBook extends React.Component {
     }
 
     add() {
-        this.props.onAdd({title: this.state.title, author: this.state.author});
+        this.props.onAdd({title: this.state.title.trim(), author: this.state.author.trim()});
         this.setState({title: this.props.defaultTitle, author: this.props.defaultAuthor});
     }
 
@@ -40,7 +40,7 @@ export class NewBook extends React.Component {
                         onChange={(event) => this.updateAuthor(event)}/> 
                 </div>
                 <div className="form-group">
-                    <button disabled={this.state.title === this.props.defaultTitle || this.state.author === this.props.defaultAuthor} onClick={() => this.add()} className="btn btn-primary btn-lg btn-block">Add</button>
+                    <button disabled={this.state.title.trim() === this.props.defaultTitle || this.state.author === this.props.defaultAuthor} onClick={() => this.add()} className="btn btn-primary btn-lg btn-block">Add</button>
                 </div>
             </div>
         );

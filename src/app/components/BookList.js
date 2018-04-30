@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export class BookList extends React.Component {
     render() {
@@ -10,4 +11,8 @@ export class BookList extends React.Component {
             </ul>
         );
     }
+}
+
+BookList.propTypes = {
+    books: PropTypes.array
 }
