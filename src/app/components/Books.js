@@ -22,7 +22,7 @@ export class Books extends React.Component {
         .then(function ( results ) {
             for (let key of Object.keys(results)) {
                 let obj = results[key];
-                self.addBook({title: obj.title, author: obj.author});
+                self.addBook({title: obj.title, author: obj.author, link: key});
             }
         });
     }
