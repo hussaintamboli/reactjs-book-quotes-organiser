@@ -8,11 +8,23 @@ export class Books extends React.Component {
     constructor() {
         super();
         this.state = {
-            books: [
-                {title: "The Black Swan", author: "Nassim Nicholas Taleb"},
-                {title: "The Lean Startup", author: "Eric Ries"}
-            ]
+            books: []
         };
+    }
+
+    componentDidMount() {
+        this.fetchBooks();
+    }
+
+    fetchBooks = () => {
+        var self = this;
+        $.getJSON('https://bookquotes-f6c75.firebaseio.com/library.json')
+        .then(function ( results ) {
+            for (let key of Object.keys(results)) {
+                let obj = results[key];
+                self.addBook({title: obj.title, author: obj.author});
+            }
+        });
     }
 
     addBook = (book) => {
