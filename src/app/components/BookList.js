@@ -12,7 +12,11 @@ export class BookList extends React.Component {
         var books = this.props.books;
         return (
             <ul>
-                {books.map((item, i) => <li key={i}><Link to={{ pathname: "/quotes", search: "?title=" + item.link }}>{item.title}</Link> by <Link to={{ pathname: "/quotes", search: "?author=" + this.snakeCase(item.author) }}>{item.author}</Link></li>)}
+                {books.map((item, i) => <li key={i}><Link to={{ pathname: "/quotes", search: "?title=" + item.link }}>{item.title}</Link>
+                 by 
+                 <Link to={{ pathname: "/quotes", search: "?author=" + this.snakeCase(item.author) }}>
+                    {item.author}</Link></li>)
+                }
             </ul>
         );
     }
