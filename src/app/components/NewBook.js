@@ -4,9 +4,10 @@ export class NewBook extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            title: props.defaultTitle,
-            author: props.defaultAuthor
+            title: "",
+            author: ""
         };
+        this.updateState = this.updateState.bind(this);
     }
 
     add() {
@@ -14,13 +15,19 @@ export class NewBook extends React.Component {
         this.setState({title: this.props.defaultTitle, author: this.props.defaultAuthor});
     }
 
-    updateTitle(event) {
-        this.setState({title: event.target.value});
+    // updateTitle(event) {
+    //     this.setState({title: event.target.value});
+    // }
+
+    updateState(event) {
+        const val = event.target.value;
+        const name = event.target.name;
+        this.setState({[name]: val});
     }
 
-    updateAuthor(event) {
-        this.setState({author: event.target.value});
-    }
+    // updateAuthor(event) {
+    //     this.setState({author: event.target.value});
+    // }
 
     render() {
         return (
@@ -30,19 +37,27 @@ export class NewBook extends React.Component {
                         className="form-control col-md-12" 
                         rows="2" placeholder="I am reading this book named" 
                         value={this.state.title}
-                        onChange={(event) => this.updateTitle(event)} />
+                        onChange={this.updateState} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="author" className="font-italic font-weight-light">by</label>
                     <input className="form-control form-control-sm col-md-12" 
                         id="author" placeholder="this author" 
                         value={this.state.author}
-                        onChange={(event) => this.updateAuthor(event)}/> 
+                        onChange={this.updateState}/> 
                 </div>
                 <div className="form-group">
-                    <button disabled={this.state.title.trim() === this.props.defaultTitle || this.state.author === this.props.defaultAuthor} onClick={() => this.add()} className="btn btn-primary btn-lg btn-block">Add</button>
+                    <button disabled={this.isAddButtonDisabled()} 
+                        onClick={() => this.add()} 
+                        className="btn btn-primary btn-lg btn-block">
+                        Add
+                    </button>
                 </div>
             </div>
         );
+    }
+
+    isAddButtonDisabled() {
+        return this.state.title.trim() === this.props.defaultTitle || this.state.author === this.props.defaultAuthor;
     }
 }

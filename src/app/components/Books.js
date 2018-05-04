@@ -50,7 +50,7 @@ export class Books extends React.Component {
     render() {
         return (
             <div className="col-md-6 offset-3"> 
-                <NewBook onAdd={this.addBook} defaultTitle={''} defaultAuthor={''} />
+                <NewBook onAdd={this.addBook} />
 
                 <BookList books={this.state.books}/>
             </div>
